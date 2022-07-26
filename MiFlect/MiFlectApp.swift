@@ -13,7 +13,7 @@ struct MiFlectApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            EditReflection()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

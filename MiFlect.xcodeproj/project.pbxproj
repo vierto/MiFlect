@@ -8,21 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		A07A841A288EBA36004D9D6F /* MiFlectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07A8419288EBA36004D9D6F /* MiFlectApp.swift */; };
-		A07A841C288EBA36004D9D6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07A841B288EBA36004D9D6F /* ContentView.swift */; };
+		A07A841C288EBA36004D9D6F /* HomeReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07A841B288EBA36004D9D6F /* HomeReflection.swift */; };
 		A07A841E288EBA37004D9D6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07A841D288EBA37004D9D6F /* Assets.xcassets */; };
 		A07A8421288EBA37004D9D6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07A8420288EBA37004D9D6F /* Preview Assets.xcassets */; };
 		A07A8423288EBA37004D9D6F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07A8422288EBA37004D9D6F /* Persistence.swift */; };
-		A07A8426288EBA37004D9D6F /* MiFlect.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A07A8424288EBA37004D9D6F /* MiFlect.xcdatamodeld */; };
+		A09D3C53288FE7120044B5B9 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D3C52288FE7120044B5B9 /* SplashScreenView.swift */; };
+		A09D3C55288FF83A0044B5B9 /* CoreDataVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D3C54288FF83A0044B5B9 /* CoreDataVM.swift */; };
+		A09D3C58288FFA730044B5B9 /* ReflectionContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A09D3C56288FFA730044B5B9 /* ReflectionContainer.xcdatamodeld */; };
+		A09D3C5A288FFF0F0044B5B9 /* EditReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D3C59288FFF0F0044B5B9 /* EditReflection.swift */; };
+		A09D3C5C28901B3A0044B5B9 /* AddNewGoals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D3C5B28901B3A0044B5B9 /* AddNewGoals.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A07A8416288EBA36004D9D6F /* MiFlect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiFlect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A07A8419288EBA36004D9D6F /* MiFlectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiFlectApp.swift; sourceTree = "<group>"; };
-		A07A841B288EBA36004D9D6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A07A841B288EBA36004D9D6F /* HomeReflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReflection.swift; sourceTree = "<group>"; };
 		A07A841D288EBA37004D9D6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A07A8420288EBA37004D9D6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A07A8422288EBA37004D9D6F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		A07A8425288EBA37004D9D6F /* MiFlect.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MiFlect.xcdatamodel; sourceTree = "<group>"; };
+		A09D3C52288FE7120044B5B9 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		A09D3C54288FF83A0044B5B9 /* CoreDataVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataVM.swift; sourceTree = "<group>"; };
+		A09D3C57288FFA730044B5B9 /* ReflectionContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReflectionContainer.xcdatamodel; sourceTree = "<group>"; };
+		A09D3C59288FFF0F0044B5B9 /* EditReflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReflection.swift; sourceTree = "<group>"; };
+		A09D3C5B28901B3A0044B5B9 /* AddNewGoals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGoals.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +63,12 @@
 		A07A8418288EBA36004D9D6F /* MiFlect */ = {
 			isa = PBXGroup;
 			children = (
+				A0FB3F06288FE41E006A541E /* ViewModels */,
+				A0FB3F05288FE417006A541E /* Models */,
+				A0FB3F04288FE411006A541E /* Views */,
 				A07A8419288EBA36004D9D6F /* MiFlectApp.swift */,
-				A07A841B288EBA36004D9D6F /* ContentView.swift */,
 				A07A841D288EBA37004D9D6F /* Assets.xcassets */,
 				A07A8422288EBA37004D9D6F /* Persistence.swift */,
-				A07A8424288EBA37004D9D6F /* MiFlect.xcdatamodeld */,
 				A07A841F288EBA37004D9D6F /* Preview Content */,
 			);
 			path = MiFlect;
@@ -71,6 +80,33 @@
 				A07A8420288EBA37004D9D6F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A0FB3F04288FE411006A541E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A07A841B288EBA36004D9D6F /* HomeReflection.swift */,
+				A09D3C52288FE7120044B5B9 /* SplashScreenView.swift */,
+				A09D3C59288FFF0F0044B5B9 /* EditReflection.swift */,
+				A09D3C5B28901B3A0044B5B9 /* AddNewGoals.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A0FB3F05288FE417006A541E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A09D3C56288FFA730044B5B9 /* ReflectionContainer.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A0FB3F06288FE41E006A541E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A09D3C54288FF83A0044B5B9 /* CoreDataVM.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,10 +179,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A07A8426288EBA37004D9D6F /* MiFlect.xcdatamodeld in Sources */,
+				A09D3C5C28901B3A0044B5B9 /* AddNewGoals.swift in Sources */,
+				A09D3C5A288FFF0F0044B5B9 /* EditReflection.swift in Sources */,
 				A07A8423288EBA37004D9D6F /* Persistence.swift in Sources */,
-				A07A841C288EBA36004D9D6F /* ContentView.swift in Sources */,
+				A09D3C53288FE7120044B5B9 /* SplashScreenView.swift in Sources */,
+				A07A841C288EBA36004D9D6F /* HomeReflection.swift in Sources */,
 				A07A841A288EBA36004D9D6F /* MiFlectApp.swift in Sources */,
+				A09D3C58288FFA730044B5B9 /* ReflectionContainer.xcdatamodeld in Sources */,
+				A09D3C55288FF83A0044B5B9 /* CoreDataVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,13 +389,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		A07A8424288EBA37004D9D6F /* MiFlect.xcdatamodeld */ = {
+		A09D3C56288FFA730044B5B9 /* ReflectionContainer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				A07A8425288EBA37004D9D6F /* MiFlect.xcdatamodel */,
+				A09D3C57288FFA730044B5B9 /* ReflectionContainer.xcdatamodel */,
 			);
-			currentVersion = A07A8425288EBA37004D9D6F /* MiFlect.xcdatamodel */;
-			path = MiFlect.xcdatamodeld;
+			currentVersion = A09D3C57288FFA730044B5B9 /* ReflectionContainer.xcdatamodel */;
+			path = ReflectionContainer.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
