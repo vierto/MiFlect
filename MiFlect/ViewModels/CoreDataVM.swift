@@ -38,23 +38,26 @@ class CoreDataViewModel: ObservableObject {
         
     }
     
-    func addData(text: String) {
+    func addDataGoals(refGoals: String) {
         
         let newReflection = ReflectionEntity(context: container.viewContext)
-        newReflection.title = text
+        newReflection.reflectionGoals = refGoals
         saveData()
         
     }
- 
-//    func updateData(entity: ReflectionEntity) {
-//
-//        let currTitle = entity.title ?? ""
-//        let newTitle = currTitle + "!"
-//        entity.title = newTitle
-//        saveData()
-//
-//    }
     
+    func addDataReflection(refTitle: String, refType: String, refDesc: String) {
+        
+        let newReflection = ReflectionEntity(context: container.viewContext)
+        newReflection.reflectionTitle = refTitle
+        newReflection.reflectionType = refType
+        newReflection.reflectionDesc = refDesc
+        saveData()
+        
+    }
+    
+    
+ 
     func deleteData(indexSet: IndexSet) {
         
         guard let index = indexSet.first else { return }
