@@ -11,26 +11,25 @@ import CoreData
 struct HomeReflection: View {
     
     @Environment(\.managedObjectContext) private var viewContext
+    
     @State private var searchText = ""
     @StateObject var vm = CoreDataViewModel()
     @State private var goToEditReflection = false
+    
+    var dataFromAddNewGoals: ReflectionEntity?
     
     var body: some View {
         
         NavigationView {
             
-//            Text("Searching for \(searchText)")
-//                .searchable(text: $searchText, prompt: "Look for something")
-            
             ScrollView {
-                
-                if vm.savedEntities.isEmpty {
+                if vm.savedRefEntities.isEmpty {
 
                     Text("Reflection Not found!")
 
                 } else {
                     
-                    ForEach(vm.savedEntities) { entity in
+                    ForEach(vm.savedRefEntities) { entity in
                         
                         VStack(alignment: .leading, spacing: 20) {
                             
@@ -95,7 +94,7 @@ struct HomeReflection: View {
                     
                 }
                 
-                NavigationLink(destination: EditReflection(), isActive: $goToEditReflection) {
+                NavigationLink(destination: EditReflection(vm: vm, isEditReflectionAction: $goToEditReflection), isActive: $goToEditReflection) {
                     EmptyView()
                 }
                 .toolbar {

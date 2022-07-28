@@ -11,7 +11,8 @@ import CoreData
 class CoreDataViewModel: ObservableObject {
     
     let container: NSPersistentContainer
-    @Published var savedEntities: [ReflectionEntity] = []
+    @Published var savedRefEntities: [ReflectionEntity] = []
+    @Published var savedGoalEntities: [GoalEntity] = []
     
     init() {
         
@@ -28,20 +29,23 @@ class CoreDataViewModel: ObservableObject {
     
     func fetchData() {
         
-        let request = NSFetchRequest<ReflectionEntity>(entityName: "ReflectionEntity")
+        let reflectionRequest = NSFetchRequest<ReflectionEntity>(entityName: "ReflectionEntity")
+        let goalRequest = NSFetchRequest<GoalEntity>(entityName: "GoalEntity")
         
         do {
-            savedEntities = try container.viewContext.fetch(request)
+            savedRefEntities = try container.viewContext.fetch(reflectionRequest)
+            savedGoalEntities = try container.viewContext.fetch(goalRequest)
         } catch let error {
             print("Error fetching. \(error)")
         }
         
     }
     
-    func addDataGoals(refGoals: String) {
+    func addDataGoals(refGoals: String, isChecked: Bool) {
         
-        let newReflection = ReflectionEntity(context: container.viewContext)
+        let newReflection = GoalEntity(context: container.viewContext)
         newReflection.reflectionGoals = refGoals
+        newReflection.checked = isChecked
         saveData()
         
     }
@@ -56,14 +60,27 @@ class CoreDataViewModel: ObservableObject {
         
     }
     
-    
- 
     func deleteData(indexSet: IndexSet) {
         
         guard let index = indexSet.first else { return }
-        let entity = savedEntities[index]
+        let entity = savedRefEntities[index]
         container.viewContext.delete(entity)
         saveData()
+        
+    }
+    
+    func moveData(indexSet: IndexSet, destination: Int) {
+        savedRefEntities.move(fromOffsets: indexSet, toOffset: destination)
+    }
+    
+    func updateData(entity: GoalEntity, totalEntity: [GoalEntity], isChecked: Bool) {
+        
+        if let idx = totalEntity.firstIndex(where: { $0.reflectionGoals == entity.reflectionGoals }) {
+
+            entities[idx].checked = isChecked
+
+            saveData()
+        }
         
     }
     

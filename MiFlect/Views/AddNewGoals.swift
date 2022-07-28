@@ -13,84 +13,113 @@ struct AddNewGoals: View {
     @StateObject var vm = CoreDataViewModel()
     @State private var goalsTxtField: String = ""
     @State private var showAlert: Bool = false
-    @State private var progress = 0.25
+    @State private var progress = 0.0
+    @State private var totalChecked = 0
+//    @State private var length: String
+    
+    //rumus ngitung progess bar = totalChecked / list.length
     
     var body: some View {
         
-        NavigationView {
-            
-            VStack(alignment: .leading, spacing: 20) {
-                    
-                TextField("Input your reflection goals here...", text: $goalsTxtField)
+        VStack(alignment: .leading, spacing: 20) {
+                
+            TextField("Input your reflection goals here...", text: $goalsTxtField)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 12)
+                .frame(height: 55)
+                .foregroundColor(Color(red: 42/255, green: 40/255, blue: 74/255))
+                .background(Color(red: 225/255, green: 225/255, blue: 225/255))
+                .cornerRadius(10)
+                
+            Button(action: {
+                
+                if textFieldValidation() {
+                    guard !goalsTxtField.isEmpty else { return }
+                    vm.addDataGoals(refGoals: goalsTxtField, isChecked: false)
+                    goalsTxtField = ""
+                }
+                        
+            }, label: {
+                
+                Text("Save")
+                    .fontWeight(.semibold)
+                    .font(.callout)
+                    .lineSpacing(24)
                     .padding(.horizontal, 14)
                     .padding(.vertical, 12)
-                    .frame(height: 55)
-                    .foregroundColor(Color(red: 42/255, green: 40/255, blue: 74/255))
-                    .background(Color(red: 225/255, green: 225/255, blue: 225/255))
+                    .frame(width: 66, height: 35)
+                    .background(Color(red: 0.83, green: 0.81, blue: 1))
+                    .foregroundColor(Color(red: 56/255, green: 55/255, blue: 69/255))
                     .cornerRadius(10)
-                    
-                Button(action: {
-                    
-                    if textFieldValidation() {
-                        guard !goalsTxtField.isEmpty else { return }
-                        vm.addDataGoals(refGoals: goalsTxtField)
-                        goalsTxtField = ""
-                    }
-                            
-                }, label: {
-                    
-                    Text("Save")
-                        .fontWeight(.semibold)
-                        .font(.callout)
-                        .lineSpacing(24)
-                        .padding(.horizontal, 14)
-                        .padding(.vertical, 12)
-                        .frame(width: 66, height: 35)
-                        .background(Color(red: 0.83, green: 0.81, blue: 1))
-                        .foregroundColor(Color(red: 56/255, green: 55/255, blue: 69/255))
-                        .cornerRadius(10)
-                    
-                })
                 
-                List {
-                    ForEach(vm.savedEntities) { entity in
-                        Text(entity.reflectionGoals ?? "No Goals!")
-                    }
-                    .onDelete(perform: vm.deleteData)
-                }
-                .listStyle(PlainListStyle())
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        EditButton()
-                    }
-                }
-                .foregroundColor(Color.black)
-
-                Text("Reflection Progress")
-                    .font(.system(size: 24, weight: .semibold))
-                
-                VStack {
+            })
+            
+            List {
+                ForEach(vm.savedGoalEntities) { entity in
                     
                     HStack {
-                        ProgressView(value: progress)
-                        Text("\(String(format: "%.0f%%", progress * 100))")
+                        Text(entity.reflectionGoals ?? "No Goals!")
+                        
+                        Spacer()
+                        
+                        if entity.checked == true {
+                            Image(systemName: "checkmark.circle")
+                                .scaleEffect(1.3)
+                                .foregroundColor(Color(red: 86/255, green: 71/255, blue: 255/255))
+                        } else {
+                            Image(systemName: "circle")
+                                .scaleEffect(1.3)
+                                .foregroundColor(Color(red: 153/255, green: 153/255, blue: 153/255))
+                        }
+                        
+                    }
+                    .onTapGesture {
+                        withAnimation(.linear) {
+                            
+                            print("123")
+                            let isChecked = !entity.checked
+                            
+                            vm.updateData(entity: entity, isChecked: isChecked)
+                            
+                            print(vm.savedGoalEntities.count)
+                        }
                     }
                     
-                    Button("More", action: { progress += 0.05 })
-                    
                 }
-                .progressViewStyle(customProgressView())
+                .onDelete(perform: vm.deleteData)
+                .onMove(perform: vm.moveData)
+            }
+            .listStyle(PlainListStyle())
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
+            }
+            .foregroundColor(Color.black)
+
+            Text("Reflection Progress")
+                .font(.system(size: 24, weight: .semibold))
+            
+            VStack {
+                
+                HStack {
+                    ProgressView(value: progress)
+                    Text("\(String(format: "%.0f%%", progress * 100))")
+                }
+                
+                Button("More", action: { progress += 0.05 })
                 
             }
-            .padding(14)
-            .navigationTitle("Add New Goals 📝")
-            .alert(isPresented: $showAlert) {
-                Alert(
-                    title: Text("Input must be at least 5 character long"),
-                    dismissButton: .default(Text("Close"))
-                )
-            }
+            .progressViewStyle(customProgressView())
             
+        }
+        .padding(14)
+        .navigationTitle("Add New Goals 📝")
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Input must be at least 5 character long"),
+                dismissButton: .default(Text("Close"))
+            )
         }
         
     }
