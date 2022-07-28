@@ -10,6 +10,8 @@ import SwiftUI
 struct EditReflection: View {
     
     public var vm: CoreDataViewModel?
+    
+    public var currReflection: String = ""
     @Binding var isEditReflectionAction: Bool
     @State private var goToAddNewGoals: Bool = false
     @State private var titleTxtField: String = ""
@@ -30,7 +32,13 @@ struct EditReflection: View {
             
             ZStack {
                 
-                if titleTxtField.isEmpty {
+                if (currReflection != "" && titleTxtField.isEmpty) {
+                    Text(currReflection)
+                    .font(.system(size: 30, weight: .semibold))
+                    .foregroundColor(Color(red: 153/255, green: 153/255, blue: 153/255))
+                    .frame(width: 310, alignment: .leading)
+                }
+                else if titleTxtField.isEmpty {
                     Text("Write title here...")
                     .font(.system(size: 30, weight: .semibold))
                     .foregroundColor(Color(red: 153/255, green: 153/255, blue: 153/255))
@@ -41,13 +49,26 @@ struct EditReflection: View {
                     .font(.system(size: 30, weight: .semibold))
                     .frame(width: 310, alignment: .leading)
                 
+                
             }
             
             HStack (spacing: 115) {
                 
                 ZStack {
                     
-                    if typeTxtField.isEmpty {
+                    if (currReflection != "" && typeTxtField.isEmpty) {
+                        
+                        Text(currReflection)
+                            .font(.system(size: 12, weight: .semibold))
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .foregroundColor(Color(red: 86/255, green: 71/255, blue: 255/255).opacity(0.6))
+                            .background(Color(red: 0.90, green: 0.89, blue: 1))
+                            .cornerRadius(100)
+                            .frame(width: .infinity, height: 20, alignment: .leading)
+                        
+                    } else if typeTxtField.isEmpty {
+                        
                         Text("Input type here...")
                             .font(.system(size: 12, weight: .semibold))
                             .padding(.horizontal, 12)
@@ -56,6 +77,7 @@ struct EditReflection: View {
                             .background(Color(red: 0.90, green: 0.89, blue: 1))
                             .cornerRadius(100)
                             .frame(width: .infinity, height: 20, alignment: .leading)
+                        
                     }
                     
                     TextField("", text: $typeTxtField)
@@ -73,27 +95,34 @@ struct EditReflection: View {
             
             ZStack {
                 
-                RoundedRectangle(cornerRadius: 10)
-                .fill(Color(red: 0.83, green: 0.81, blue: 1))
-                .frame(width: 350, height: 510)
-
-                if descTxtField.isEmpty {
+//                RoundedRectangle(cornerRadius: 10)
+//                .fill(Color(red: 0.83, green: 0.81, blue: 1))
+//                .frame(width: 350, height: 510)
+                
+                if (currReflection != "" && descTxtField.isEmpty) {
+                    
+                    Text(currReflection)
+                        .font(.callout)
+                        .foregroundColor(Color(red: 34/255, green: 34/255, blue: 46/255).opacity(0.6))
+                        .frame(width: 315, height: 474.30, alignment: .leading)
+                        .lineSpacing(24)
+                    
+                } else if descTxtField.isEmpty {
+                    
                     Text("Write your reflection here...")
                         .font(.callout)
                         .foregroundColor(Color(red: 34/255, green: 34/255, blue: 46/255).opacity(0.6))
-                        .frame(width: 315, height: 474.30, alignment: .topLeading)
+                        .frame(width: 315, height: 474.30, alignment: .leading)
                         .lineSpacing(24)
+                    
                 }
 
                 TextEditor(text: $descTxtField)
-        //                        .font(.callout)
-        //                        .frame(width: 315, height: 474.30, alignment: .topLeading)
-        //                        .background(.black)
-        //                        .foregroundColor(Color(red: 0.83, green: 0.81, blue: 1))
+                    .font(.callout)
+                    .frame(width: 315, height: 474.30, alignment: .leading)
+                    .background(.gray)
+                    .foregroundColor(.black)
 
-        //                    TextField("", text: $descTxtField)
-        //                        .font(.callout)
-        //                        .frame(width: 315, height: 474.30, alignment: .topLeading)
             }
             .frame(width: 350, height: 510)
 

@@ -8,14 +8,14 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="ReflectionEntity" representedClassName="ReflectionEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="reflectionDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="reflectionDesc" optional="YES" attributeType="String"/>
         <attribute name="reflectionTitle" optional="YES" attributeType="String"/>
         <attribute name="reflectionType" optional="YES" attributeType="String"/>
     </entity>
     <elements>
+        <element name="GoalEntity" positionX="-63" positionY="18" width="128" height="59"/>
         <element name="Item" positionX="-63" positionY="18" width="128" height="44"/>
         <element name="ReflectionEntity" positionX="-63" positionY="-18" width="128" height="89"/>
-        <element name="GoalEntity" positionX="-63" positionY="18" width="128" height="59"/>
     </elements>
 </model>

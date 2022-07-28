@@ -56,6 +56,7 @@ class CoreDataViewModel: ObservableObject {
         newReflection.reflectionTitle = refTitle
         newReflection.reflectionType = refType
         newReflection.reflectionDesc = refDesc
+        newReflection.reflectionDate = Date()
         saveData()
         
     }
@@ -69,17 +70,28 @@ class CoreDataViewModel: ObservableObject {
         
     }
     
+    func deleteGoalsData(indexSet: IndexSet) {
+
+        guard let index = indexSet.first else { return }
+        let entity = savedGoalEntities[index]
+        container.viewContext.delete(entity)
+        saveData()
+        
+    }
+    
     func moveData(indexSet: IndexSet, destination: Int) {
         savedRefEntities.move(fromOffsets: indexSet, toOffset: destination)
     }
     
-    func updateData(entity: GoalEntity, totalEntity: [GoalEntity], isChecked: Bool) {
+    func updateData(entity: GoalEntity) {
         
-        if let idx = totalEntity.firstIndex(where: { $0.reflectionGoals == entity.reflectionGoals }) {
-
-            entities[idx].checked = isChecked
-
+        if let idx = savedGoalEntities.firstIndex(where: { $0.id == entity.id }) {
+            
+            savedGoalEntities[idx].reflectionGoals = entity.reflectionGoals
+            savedGoalEntities[idx].checked = !entity.checked
+            
             saveData()
+            
         }
         
     }
